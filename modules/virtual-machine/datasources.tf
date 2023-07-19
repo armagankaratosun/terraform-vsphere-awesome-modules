@@ -21,15 +21,4 @@ data "vsphere_virtual_machine" "template" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-# Data source for vCenter Content Library
-data "vsphere_content_library" "content_library" {
-  name = "local"
-}
-
-# Data source for vCenter Content Library Item
-data "vsphere_content_library_item" "ubuntu-cloud-image" {
-  name       = "ubuntu-22.04-cloud-init-image"
-  type       = "ovf"
-  library_id = data.vsphere_content_library.content_library.id
-}
 
