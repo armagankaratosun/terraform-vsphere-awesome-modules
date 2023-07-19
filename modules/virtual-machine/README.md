@@ -1,6 +1,6 @@
 # terraform-vsphere-awesome-modules/virtual-machine
 
-Terraform sub-module for creating Virtual Machine(s) in vSphere/vCenter enviroment. An ideal use case may be to create multiple virtual machines and manage their lifecylce via Terraform.
+Terraform sub-module for creating Virtual Machine(s) in vSphere/vCenter environment. An ideal use case may be to create multiple virtual machines and manage their life cylce via Terraform.
 
 ## Usage
 
@@ -26,17 +26,33 @@ provider "vsphere" {
 then, you can simply create a main.tf file where you can define Virtual Machine(s);
 
 ```
-module "snapshot" {
-  source = "git::https://github.com/armagankaratosun/terraform-vsphere-awesome-modules.git//modules/virtual-machine-snapshot"
+module "vsphere_vm" {
+  source = "git::https://github.com/armagankaratosun/terraform-vsphere-awesome-modules.git//modules/virtual-machine"
 
-  vsphere_datacenter   = "<your-datacenter-name>" # Datacenter, by default.
-  vm_name              = ["vm-to-be-snapshotted-01","vm-to-be-snapshotted-02"]
-  snapshot_name        = ["snapshot-vm-to-be-snapshotted-01","snapshot-vm-to-be-snapshotted-02"]
-  description          = "A nice and very informative description for the snapshots."
-  memory               = true
-  quiesce              = true
-  remove_children      = false
-  consolidate          = true
+  vsphere_datastore = "<your-datastore>"
+  vsphere_datacenter = "<your-datacenter>"
+  vsphere_compute_cluster = "<your-cluster>"
+  vsphere_networks = ["vlan-0", "vlan-10"]
+  
+  vm_name = ["vm-1", "vm-2"]
+  vsphere_virtual_machine_template = "<your-vm-template>"
+  vm_volumes = {
+    boot = {
+        label = "disk0"
+        size  = 30
+        thin_provisioned = false
+        unit_number      = 0
+
+    }
+    data = {
+        label = "disk1"
+        size = 100
+        thin_provisioned = true
+        unit_number      = 1
+
+    }
+  }
+  cloud_init_data = file("<path-to-your-cloud-init-yaml>")
 }
 ```
 An example .tf file can be found under `examples` directory.
@@ -44,16 +60,18 @@ An example .tf file can be found under `examples` directory.
 
 ## Variables
 
-| Name                        | Default Value                | Type   | Description                                    |
-|-----------------------------|------------------------------|--------|------------------------------------------------|
-| vsphere_datacenter          | null                         | string | Name of your datacenter in vSphere/vCenter, usually, it is 'Datacenter                                                                             |
-| vm_name                     | null                         | string | The name of the virtual machine from which the snapshot will be taken. Can be a list of vm names to create snapshots of multiple virtual machines. |
-| snapshot_name               | null                         | string | The name of the snapshot(s). Can be a list of names correspondign to the vm count.                                                                 |
-| description                 | null                         | string | Description of the snapshot.                                                                                                                       |
-| memory                      | true                         | bool   | Flag to indicate whether to capture the virtual machine's memory state.                                                                            |
-| quiesce                     | true                         | bool   | Flag to indicate whether to quiesce the file system in the virtual machine.                                                                        |
-| remove_children             | false                        | bool   | Flag to indicate whether to remove child snapshots when taking the snapshot.                                                                       |
-| consolidate                 | true                         | bool   | Flag to indicate whether to consolidate the virtual machine's disk files.                                                                          |
+| Name                              | Default Value                | Type   | Description                                    |
+|-----------------------------------|------------------------------|--------|------------------------------------------------|
+| vsphere_datacenter                | null                         | string         | Name of your datacenter in vSphere/vCenter, usually, it is 'Datacenter                                                                             |
+| vsphere_datastore                 | null                         | string         | Name of your datastore that you want to create volumes in.                                                                                         |
+| vsphere_compute_cluster           | null                         | string         | Name of the compute cluster that you want to provision VMs.                                                                                        |
+| vsphere_virtual_machine_template  | null                         | string         | Virtual machine template that you initialy use to clone for your VM.                                                                               |
+| vsphere_networks                  | null                         | list (string)  | List of your availabe networks in vSphere/vCenter. There should be at least one network.                                                           |
+| vm_name                           | null                         | list (string)  | The name of the virtual machine(s)                                                                                                                 |
+| vm_volumes                        | null                         | map  (object)  | List of virtual machine volumes, there should be at least one (boot) volume with unit_number = 0.                                                  |
+| vm_num_cpus                       | 2                            | number         | Number of cores for your virtual machine, gives you two cores by default.                                                                          |
+| vm_memory                         | 2048                         | number         | Amount of RAM for your virtual machine, gives you two gigabyte of RAM by default.                                                                  |
+| cloud_init_data                   | null                         | string         | User-input for cloud init, provide a full path for cloud-init.yaml file.                                                                           |
 
 ## Requirements
 
