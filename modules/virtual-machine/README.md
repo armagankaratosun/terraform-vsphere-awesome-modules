@@ -1,4 +1,4 @@
-# terraform-vsphere-awesome-modules/virtual-machine
+# terraform-vsphere-awesome-modules/virtual-machine 🖥️
 
 Terraform sub-module for creating Virtual Machine(s) in vSphere/vCenter environment. An ideal use case may be to create multiple virtual machines and manage their life cylce via Terraform.
 

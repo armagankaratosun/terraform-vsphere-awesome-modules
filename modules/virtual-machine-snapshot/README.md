@@ -1,4 +1,4 @@
-# terraform-vsphere-awesome-modules/virtual-machine-snapshot
+# terraform-vsphere-awesome-modules/virtual-machine-snapshot 📸
 
 Terraform sub-module for Virtual Machine Snapshots in vSphere/vCenter enviroment. An ideal use case may be to create snapshots over multiple virtual machines and remove them periodically.
 
@@ -62,4 +62,4 @@ An example .tf file can be found under `examples` directory.
 
 
 ## License
-GPL-3.0 license
+This project is licensed under the GPL-3.0 license.
