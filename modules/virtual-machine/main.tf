@@ -34,7 +34,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
   
   extra_config = {
-   "guestinfo.userdata"          = file("./cloudinit/userdata.yaml")
+   "guestinfo.userdata"          = var.cloud_init_data
   }
 }
 
