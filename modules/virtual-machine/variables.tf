@@ -1,19 +1,4 @@
 # Vsphere/Vcenter variables
-variable "vsphere_server" {
-   type = string
-   description = "URL for vSphere host, or vCenter server."
-}
-
-variable "vsphere_user" {
-   type = string
-   description = "username for either vSphere or vCenter, has to have necessary permissions to carry on tasks."
-}
-
-variable "vsphere_password" {
-   type = string
-   description = "password for the given user."
-}
-
 variable "vsphere_datacenter" {
    type = string
    description = "Name of your datacenter in vSphere/vCenter, usually, it is 'Datacenter'."
