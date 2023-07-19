@@ -1,4 +1,5 @@
-# terraform-vsphere-awesome-modules
+# terraform-vsphere-awesome-modules 😎
+
 Welcome to Armagan's Awesome Terraform Modules for Vsphere! This repository contains several sub-modules to effortlessly provision resources on Vcenter/Vsphere. Each sub-module has its own `README` file to thoroughly describe its usage and the variables it contains.
 
 ## 📂 Sub-modules
