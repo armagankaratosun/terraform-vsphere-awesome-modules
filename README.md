@@ -44,6 +44,11 @@ module "snapshot" {
 
 Please take a look at each sub-module's README.md file for more details and variables. Additionally, example .tf files for each sub-module can be found under the examples directory.
 
+### Step 3: Run Terraform
+
+You can simply initiate terraform with `terraform init`, then run `terraform plan` and `terraform apply` to create your virtual machines and virtual machine snapshots.
+
+
 ## 🛠️ Requirements
 
 * Terraform >= 1.3
