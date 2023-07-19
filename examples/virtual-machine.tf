@@ -1,9 +1,6 @@
 module "vsphere_vm" {
   source = "git::https://github.com/armagankaratosun/terraform-vsphere-awesome-modules.git//modules/virtual-machine"
 
-  vsphere_server = "https://<vcenter-or-vsphere-url>"
-  vsphere_user = "administrator@vcenter.local"
-  vsphere_password = "<your-password>"
   vsphere_datastore = "<your-datastore>"
   vsphere_datacenter = "<your-datacenter>"
   vsphere_compute_cluster = "<your-cluster>"
