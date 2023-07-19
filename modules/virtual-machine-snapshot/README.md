@@ -27,7 +27,8 @@ then, you can simply create a main.tf file where you can define the snapshots;
 
 ```
 module "snapshot" {
-  source = "git::https://github.com/armagankaratosun/terraform-vsphere-awesome-modules.git//modules/virtual-machine-snapshot"
+  source  = "armagankaratosun/awesome-modules/vsphere//modules/virtual-machine-snapshot"
+  version = "0.1.0"  
 
   vsphere_datacenter   = "<your-datacenter-name>" # Datacenter, by default.
   vm_name              = ["vm-to-be-snapshotted-01","vm-to-be-snapshotted-02"]

@@ -34,13 +34,15 @@ Now, you can utilize the sub-modules to provision virtual machines and create vi
 
 ```
 module "vsphere_vm" {
-  source = "git::https://github.com/armagankaratosun/terraform-vsphere-awesome-modules.git//modules/virtual-machine"
+  source  = "armagankaratosun/awesome-modules/vsphere//modules/virtual-machine"
+  version = "0.1.0"  
 ```
 or
 
 ```
 module "snapshot" {
-  source = "git::https://github.com/armagankaratosun/terraform-vsphere-awesome-modules.git//modules/virtual-machine-snapshot"
+  source  = "armagankaratosun/awesome-modules/vsphere//modules/virtual-machine-snapshot"
+  version = "0.1.0"  
 ```
 
 Please take a look at each sub-module's README.md file for more details and variables. Additionally, example .tf files for each sub-module can be found under the examples directory.
