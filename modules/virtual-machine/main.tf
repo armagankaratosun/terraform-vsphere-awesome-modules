@@ -35,6 +35,7 @@ resource "vsphere_virtual_machine" "vm" {
   
   extra_config = {
    "guestinfo.userdata"          = var.cloud_init_data
+   "guestinfo.metadata"          = var.metadata
   }
 }
 
