@@ -53,13 +53,13 @@ variable vm_memory {
 }
 
 variable "cloud_init_data" {
-   type = string
+   type    = list(string)
    description = "User-input for cloud init"
-   default = ""
+   default = [""]
 }
 
 variable "metadata" {
-   type = string
+   type    = list(string)
    description = "metadata for cloud init"
-   default = ""
+   default = [""]
 }

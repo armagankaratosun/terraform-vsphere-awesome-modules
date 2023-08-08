@@ -34,12 +34,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
   
   extra_config = {
-   "guestinfo.userdata"          = var.cloud_init_data
-   "guestinfo.metadata"          = var.metadata
-  }
-
-  vapp {
-    properties = {
-      "guestinfo.hostname"     = "local-foo.example.com",
+    "guestinfo.userdata" = file(var.cloud_init_data[count.index])
+    "guestinfo.metadata" = file(var.metadata[count.index])
   }
 }
