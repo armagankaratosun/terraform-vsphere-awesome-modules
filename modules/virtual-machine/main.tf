@@ -14,7 +14,7 @@ resource "vsphere_virtual_machine" "vm" {
     network_id = data.vsphere_network.available_networks[count.index].id
     adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
   }
-
+  
   dynamic "disk" {
     for_each = var.vm_volumes
     content {
@@ -37,8 +37,9 @@ resource "vsphere_virtual_machine" "vm" {
    "guestinfo.userdata"          = var.cloud_init_data
    "guestinfo.metadata"          = var.metadata
   }
-}
 
-output "vm_ip" {
-  value = vsphere_virtual_machine.vm.*.guest_ip_addresses
+  vapp {
+    properties = {
+      "guestinfo.hostname"     = "local-foo.example.com",
+  }
 }
